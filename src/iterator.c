@@ -1456,10 +1456,18 @@ static void filesystem_iterator_set_current(
 	filesystem_iterator_entry *entry)
 {
 	iter->entry.ctime.seconds = entry->st.st_ctime;
+#if defined(MTIME) && MTIME == 4 
+	iter->entry.ctime.nanoseconds = entry->st.st_ctime*1000;
+#else
 	iter->entry.ctime.nanoseconds = entry->st.st_ctime_nsec;
+#endif
 
 	iter->entry.mtime.seconds = entry->st.st_mtime;
+#if defined(MTIME) && MTIME == 4 
+	iter->entry.mtime.nanoseconds = entry->st.st_mtime*1000;
+#else
 	iter->entry.mtime.nanoseconds = entry->st.st_mtime_nsec;
+#endif
 
 	iter->entry.dev = entry->st.st_dev;
 	iter->entry.ino = entry->st.st_ino;
