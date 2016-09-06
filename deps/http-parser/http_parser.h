@@ -40,11 +40,11 @@ typedef __int64 int64_t;
 typedef unsigned __int64 uint64_t;
 typedef SIZE_T size_t;
 typedef SSIZE_T ssize_t;
-#elif defined(__sun) || defined(__sun__)
+##elif defined(__sun) || defined(__sun__)
 #include <sys/inttypes.h>
-#else
-#include <stdint.h>
-#endif
+##else
+##include <stdint.h>
+##endif
 
 /* Compile with -DHTTP_PARSER_STRICT=0 to make less checks, but run
  * faster
